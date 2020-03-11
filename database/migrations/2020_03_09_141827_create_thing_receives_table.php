@@ -15,9 +15,9 @@ class CreateThingReceivesTable extends Migration
     {
         Schema::create('thing_receives', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('thing_id')->unsigned();
-            $table->integer('person_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->bigInteger('thing_id')->unsigned();
+            $table->bigInteger('person_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
 
             $table->foreign('thing_id')->references('id')->on('things')->onDelete('cascade');
             $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');

@@ -16,9 +16,9 @@ class CreateKeyPeopleTable extends Migration
         Schema::create('key_people', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('obs');
-            $table->integer('key_id')->unsigned();
-            $table->integer('person_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->bigInteger('key_id')->unsigned();
+            $table->bigInteger('person_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
 
             $table->foreign('key_id')->references('id')->on('keys')->onDelete('cascade');
             $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');

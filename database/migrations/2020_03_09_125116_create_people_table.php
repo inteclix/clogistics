@@ -17,10 +17,10 @@ class CreatePeopleTable extends Migration
             $table->bigIncrements('id');
             $table->string('firstname');
             $table->string('lastname');
-            $table->integer('person_job_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->bigInteger('person_job_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
 
-            $table->foreign('person_job_id')->references('id')->on('person_jobs')->onDelete('cascade');
+            $table->foreign('person_job_id')->references('id')->on('people')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

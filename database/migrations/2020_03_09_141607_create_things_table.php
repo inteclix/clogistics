@@ -15,10 +15,10 @@ class CreateThingsTable extends Migration
     {
         Schema::create('things', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('from_address_id')->unsigned();
-            $table->integer('to_address_id')->unsigned();
-            $table->integer('thing_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->bigInteger('from_address_id')->unsigned();
+            $table->bigInteger('to_address_id')->unsigned();
+            $table->bigInteger('thing_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
 
             $table->foreign('from_address_id')->references('id')->on('addresses')->onDelete('cascade');
             $table->foreign('to_address_id')->references('id')->on('addresses')->onDelete('cascade');

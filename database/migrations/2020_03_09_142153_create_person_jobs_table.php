@@ -16,7 +16,7 @@ class CreatePersonJobsTable extends Migration
         Schema::create('person_jobs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

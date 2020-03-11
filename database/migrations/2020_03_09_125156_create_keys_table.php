@@ -15,9 +15,10 @@ class CreateKeysTable extends Migration
     {
         Schema::create('keys', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->boolean('is_double');
             $table->string('obs');
-            $table->integer('car_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->bigInteger('car_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
 
             $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
