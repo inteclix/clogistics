@@ -54,24 +54,6 @@ class AuthController extends BaseController
      * @return mixed
      */
     public function authenticate() {
-        if($this->request->username === "admin" && $this->request->password === "aaaaaaaa"){
-            $payload = [
-                'iss' => "lumen-jwt", // Issuer of the token
-                'sub' => 0, // Subject of the token
-                'iat' => time(), // Time when JWT was issued.
-                'exp' => time() + 60*60 // Expiration time
-            ];
-
-            // As you can see we are passing `JWT_SECRET` as the second parameter that will
-            // be used to decode the token in the future.
-            $jwt = JWT::encode($payload, env('JWT_SECRET', 'JhbGciOiJIUzI1N0eXAiOiJKV1QiLC'));
-            return new JsonResponse([
-                'message' => 'authenticated_user',
-                'data' => [
-                    'token' => $jwt,
-                ]
-            ],Response::HTTP_OK);
-        }
         $this->validate($this->request, [
             'username'     => 'required',
             'password'  => 'required'
@@ -93,6 +75,7 @@ class AuthController extends BaseController
                 'message' => 'authenticated_user',
                 'data' => [
                     'token' => $this->jwt($user),
+                    'user' => $user
                 ]
             ],Response::HTTP_OK);
         }
@@ -101,6 +84,7 @@ class AuthController extends BaseController
                 'message' => 'authenticated_user',
                 'data' => [
                     'token' => $this->jwt($user),
+                    'user' => $user
                 ]
             ],Response::HTTP_OK);
         }
@@ -109,6 +93,7 @@ class AuthController extends BaseController
             'message' => 'Username or password is wrong.'
         ], 400);
     }
+    
     function me(Request $request){
         return new JsonResponse([
             'message' => 'authenticated_user',
